@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        .overlay{
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0,0,0.5);
+            z-index: 9;
+        }
+
+        .modal.open,
+        .overlay.open{
+            display: block;
+        }
+
+        .modal{
+            display: none;
+            position: fixed;
+            padding: 0.5rem;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            background: white;
+            border-radius: 0.25rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button data-open-modal>Open modal</button>
+    <div data-overlay class="overlay"></div>
+    <div data-modal class="modal">
+        <div style="margin: 5px;">This is a modal</div>
+        <button data-close-modal>Close modal</button>
+    </div>
+
+    <script>
+        const openButton = document.querySelector("[data-open-modal]")
+        const closeButton = document.querySelector("[data-close-modal]")
+        const modalEffect = document.querySelector("[data-modal]")
+        const overlayEffect = document.querySelector("[data-overlay]")
+
+        openButton.addEventListener("click",()=>{
+            modalEffect.classList.add("open")
+            overlayEffect.classList.add("open")
+        })
+
+        closeButton.addEventListener("click",()=>{
+            modalEffect.classList.remove("open");
+            overlayEffect.classList.remove("open");
+        })
+    </script>
+</body>
+</html>
